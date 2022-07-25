@@ -93,10 +93,7 @@ syntax on              " Syntax highlighting on
 set number             " Enable line numbers
 set cmdheight=1        " Only use one line for commands
 set updatetime=300     " Update faster
-set foldenable         " Enable code folding
-set foldmethod=indent  " - Fold using indentation
-set foldlevelstart=2   " - Fold depth start
-set foldnestmax=2      " - Fold depth max
+set foldmethod=indent  " Fold using indentation
 " Status Line
 set statusline=%f%m%=%l:%c
 set laststatus=2       " Always show the status line
