@@ -26,9 +26,10 @@ Temporary Items
 .apdisk
 
 # This repository
+.cfg
 .config/vim/plugged
 .config/coc/extensions
 .config/yarn/.yarn
 .config/bun/.bun-crash
-.cfg
+.config/thefuck/__pycache__
 

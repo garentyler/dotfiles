@@ -35,6 +35,7 @@ Plug 'nanotech/jellybeans.vim'                      " Jellybeans color theme
 Plug 'rakr/vim-one'                                 " Atom color themes
 Plug 'arcticicestudio/nord-vim'                     " Nord color theme
 Plug 'junegunn/seoul256.vim'                        " Seoul256 color theme
+Plug 'tpope/vim-surround'                           " Surroundings selector
 call plug#end()
 
 " Basics
