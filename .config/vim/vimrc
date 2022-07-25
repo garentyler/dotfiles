@@ -36,8 +36,8 @@ Plug 'rakr/vim-one'                                 " Atom color themes
 Plug 'arcticicestudio/nord-vim'                     " Nord color theme
 Plug 'junegunn/seoul256.vim'                        " Seoul256 color theme
 Plug 'tpope/vim-surround'                           " Surroundings selector
-Plug 'nathanaelkane/vim-indent-guides'              " Indentation guides for vim
 Plug 'w0rp/ale'                                     " Vim linting
+Plug 'pangloss/vim-javascript'                      " Better JavaScript support
 call plug#end()
 
 " Basics
