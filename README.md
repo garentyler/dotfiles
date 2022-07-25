@@ -73,7 +73,7 @@ cat .ssh/id_rsa.pub >> .ssh/authorized_keys && rm .ssh/id_rsa.pub
   - Log out and back in to enable the changes
 - Install git: `sudo apk add git`
 - Install dotfiles as described above
-- Install packages: `sudo apk add sed curl wget htop mosh less mandoc man-pages ufw gcompat util-linux pciutils usbutils coreutils binutils binutils-doc findutils ripgrep iproute2 thefuck zsh zsh-doc libuser openjdk18 nodejs build-base gcc abuild gcc-doc cmake cmake-doc extra-cmake-modules extra-cmake-modules-doc docker`
+- Install packages: `sudo apk add sed curl wget htop mosh less mandoc man-pages ufw gcompat util-linux pciutils usbutils coreutils binutils binutils-doc findutils ripgrep iproute2 thefuck zsh zsh-doc libuser openjdk18 nodejs build-base gcc abuild gcc-doc cmake cmake-doc extra-cmake-modules extra-cmake-modules-doc docker docker-compose`
 - Change the user shell:
   - `sudo touch /etc/login.defs`
   - `sudo mkdir /etc/default`
