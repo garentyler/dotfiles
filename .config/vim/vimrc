@@ -1,0 +1,177 @@
+" Move .vim to ~/.config/vim
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
+set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
+set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+
+let g:netrw_home = $XDG_DATA_HOME."/vim"
+call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
+
+set backupdir=$XDG_STATE_HOME/vim/backup | call mkdir(&backupdir, 'p')
+set directory=$XDG_STATE_HOME/vim/swap   | call mkdir(&directory, 'p')
+set undodir=$XDG_STATE_HOME/vim/undo     | call mkdir(&undodir,   'p')
+set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p')
+
+if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
+
+" Plugins
+call plug#begin("$XDG_CONFIG_HOME/vim/plugged")
+Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Auto completion
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy finder
+Plug 'preservim/nerdtree' |                         " File tree
+  \ Plug 'Xuyuanp/nerdtree-git-plugin'              " - Show git status in the file tree
+Plug 'jiangmiao/auto-pairs'                         " Bracket pair completion
+Plug 'tpope/vim-fugitive'                           " Git commands
+Plug 'prettier/vim-prettier'                        " Prettier formatting
+Plug 'airblade/vim-gitgutter'                       " Show git diff in the gutter
+Plug 'alvan/vim-closetag'                           " HTML tag completion
+Plug 'rust-lang/rust.vim'                           " Rust plugin
+Plug 'nathanaelkane/vim-indent-guides'              " Show indentation lines
+Plug 'ap/vim-css-color'                             " Show css color codes
+Plug 'kien/rainbow_parentheses.vim'                 " Rainbow parenthesis
+Plug 'nanotech/jellybeans.vim'                      " Jellybeans color theme
+Plug 'rakr/vim-one'                                 " Atom color themes
+Plug 'arcticicestudio/nord-vim'                     " Nord color theme
+Plug 'junegunn/seoul256.vim'                        " Seoul256 color theme
+call plug#end()
+
+" Basics
+set re=0              " Fix for redrawtime exceeded
+set nocompatible      " Don't try to be compatible with vi
+set encoding=utf-8    " 
+filetype on           " Enable file type detection
+filetype plugin on    " Enable plugins for the detected file type
+filetype indent on    " Load an indent file for the detected file type.
+" Some autocompletion servers have trouble with backup files
+set nobackup
+set nowritebackup
+set nobomb
+
+" Formatting
+set nowrap               " Do not wrap lines
+set textwidth=0          " 
+set whichwrap+=<,>,h,l   " 
+set formatoptions=tcqrn1 " 
+set scrolloff=10         " Do not let cursor scroll below or above N lines before scrolling.
+set autoindent           " 
+" Hard tabs:
+" set noexpandtab        " 
+" set tabstop=2          " Set tab width to 2 columns
+" Soft tabs:
+set expandtab            " Use soft tabs
+set shiftwidth=2         " Set shift width to 2 spaces
+set softtabstop=2        " 
+set noshiftround         " 
+" Let Prettier format on save
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
+" Search
+set incsearch    " While searching through a file incrementally highlight matching letters as you type.
+set ignorecase   " Ignore capital letters during search
+set smartcase    " Override the ignorecase option if searching for capital letters
+set showmatch    " Show matching words during a search
+set hlsearch     " Use highlighting when doing a search
+
+" Editor visuals
+colorscheme one
+set background=dark
+set list               " Show invisibles
+set showbreak=↪\ 
+set listchars=tab:→\ ,eol:↲,nbsp:␣,lead:•,trail:•,extends:⟩,precedes:⟨
+" Invisible characters
+set ttyfast            " Rendering
+set showmode           " Show the mode you are on the last line
+set showcmd            " Show partial command you type in the last line of the screen
+set history=1000       " Set the commands to save in history
+syntax on              " Syntax highlighting on
+set number             " Enable line numbers
+set cmdheight=1        " Only use one line for commands
+set updatetime=300     " Update faster
+set foldenable         " Enable code folding
+set foldmethod=syntax  " - Fold using the code syntax
+set foldlevelstart=2   " - Fold depth start
+set foldnestmax=2      " - Fold depth ma
+" Status Line
+set statusline=%f%m%=%l:%c
+set laststatus=2       " Always show the status line
+" Disable beeping or visual bell
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_tb=
+
+" Keybinds
+let mapleader=" "
+set wmh=0 " Set the minimum window height
+set whichwrap+=<,>,h,l,[,] " Wrap cursor across lines
+set wildmenu               " Enable auto completion menu after pressing tab.
+set wildmode=list:longest  " Make wildmenu behave like similar to Bash completion.
+" There are certain files that we would never want to edit with Vim.
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+" Remap jj to <Esc>
+imap jj <Esc>
+" Map t to open the tree, q to close it
+nmap t :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+" Space-t to open a tab
+nmap <Leader>t :tabnew<CR>
+" Space-w to close a tab
+nmap <Leader>w :tabclose<CR>
+" Space-Left to go left a tab
+nmap <Leader><Left> :tabprevious<CR>
+" Space-Right to go right a tab
+nmap <Leader><Right> :tabnext<CR>
+" Go to tab by number with Space-N
+nmap <Leader>1 1gt
+nmap <Leader>2 2gt
+nmap <Leader>3 3gt
+nmap <Leader>4 4gt
+nmap <Leader>5 5gt
+nmap <Leader>6 6gt
+nmap <Leader>7 7gt
+nmap <Leader>8 8gt
+nmap <Leader>9 9gt
+nmap <Leader>0 :tablast<CR>
+" Go to window by direction with Space-Direction
+nmap <Leader>k :wincmd k<CR>
+nmap <Leader>j :wincmd j<CR>
+nmap <Leader>h :wincmd h<CR>
+nmap <Leader>l :wincmd l<CR>
+" Open another file in the same tab with Space-o
+nmap <Leader>o :sp 
+" Use move commands with convenient directions
+nmap mj :m .+1<CR>
+nmap m<Down> :m .+1<CR>
+nmap mk :m .-2<CR>
+nmap m<Up> :m .-2<CR>
+
+" Highlight config
+highlight Pmenu ctermbg=black ctermfg=white " Change the suggestion box colors
+highlight CocFloating ctermbg=black      " Floating box background
+highlight CocHintFloat ctermfg=white     " Hint text color
+highlight CocInfoFloat ctermfg=white     " Info text color
+highlight CocWarningFloat ctermfg=yellow " Warning text color
+highlight CocErrorFloat ctermfg=red      " Error text color
+" Override the theme to let the terminal handle the background.
+highlight Normal ctermbg=none
+highlight SignColumn ctermbg=none
+highlight MatchParen ctermbg=none
+highlight Error ctermbg=none
+highlight NERDTreeExecFile ctermfg=red
+highlight NERDTreeLink ctermfg=green
+highlight VertSplit ctermfg=white ctermbg=none
+highlight CursorLine ctermfg=white ctermbg=none
+highlight StatusLine ctermbg=none
+highlight SpecialKey ctermfg=59
+highlight NonText ctermfg=59
+highlight Comment ctermfg=102
+
+" NERDTree config
+" Show hidden files by default
+let NERDTreeShowHidden=1
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+

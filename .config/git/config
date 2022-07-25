@@ -1,0 +1,24 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Garen Tyler
+	email = garentyler@garen.dev
+	signingkey = 4373EE2F02997F71E773278CE3BF83D66394FD92
+[credential]
+	helper = store
+[alias]
+	unstage = reset HEAD --
+	co = checkout
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[core]
+	autocrlf = false
+	filemode = false
+	excludesFile = ~/.gitignore
+[color]
+	ui = true

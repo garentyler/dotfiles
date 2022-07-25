@@ -1,0 +1,18 @@
+format = "$character$directory$git_branch$git_status"
+add_newline = false
+
+[directory]
+truncation_length = 1
+format = "[$path](cyan) "
+
+[character]
+success_symbol = "[➜](green)"
+error_symbol = "[➜](red)"
+
+[git_branch]
+format = "[git:\\([$branch](red)\\)](blue) "
+
+[git_status]
+format = "[$modified](yellow) "
+modified = "✘"
+
