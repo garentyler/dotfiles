@@ -20,7 +20,7 @@ My editor of choice is [vim](https://vim.org/), and I use [vim-plug](https://git
 - Update zsh: `source .zshrc`
 - Vim's first run will need to install plugins: `vim -c "PlugInstall" -c "qa!"`
   - Ignore the plugin error, that's what we're fixing right now
-  - You might need to escape the "!" at the end with "\!"
+  - You might need to escape the `!` at the end with `\!`
 - Install the ssh public key: `cat .ssh/id_rsa.pub >> .ssh/authorized_keys && rm .ssh/id_rsa.pub`
 - Repeat all of these steps as root in `/root` to get the same configuration when using `sudo`/`doas`
 - Done!
