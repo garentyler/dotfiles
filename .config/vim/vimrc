@@ -94,9 +94,9 @@ set number             " Enable line numbers
 set cmdheight=1        " Only use one line for commands
 set updatetime=300     " Update faster
 set foldenable         " Enable code folding
-set foldmethod=syntax  " - Fold using the code syntax
+set foldmethod=indent  " - Fold using indentation
 set foldlevelstart=2   " - Fold depth start
-set foldnestmax=2      " - Fold depth ma
+set foldnestmax=2      " - Fold depth max
 " Status Line
 set statusline=%f%m%=%l:%c
 set laststatus=2       " Always show the status line
