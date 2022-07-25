@@ -81,7 +81,7 @@ colorscheme one
 set background=dark
 set list               " Show invisibles
 set showbreak=↪\ 
-set listchars=tab:→\ ,eol:↲,nbsp:␣,lead:•,trail:•,extends:⟩,precedes:⟨
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 " Invisible characters
 set ttyfast            " Rendering
 set showmode           " Show the mode you are on the last line
