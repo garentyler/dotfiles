@@ -9,21 +9,43 @@ My editor of choice is [vim](https://vim.org/), and I use [vim-plug](https://git
 
 ## Installing dotfiles
 
-- Configure the alias: `alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'`
-- Prevent recursion problems: `echo ".cfg" >> .gitignore`
-- Clone the repository: `git clone --bare https://github.com/garentyler/dotfiles $HOME/.cfg`
-- Checkout the contents: `config checkout`
-  - This will overwrite files, just make a backup if you're worried about that
-- Don't show untracked files: `config config --local status.showUntrackedFiles no`
-- Install [Starship](https://starship.rs/): `curl -sS https://starship.rs/install.sh | sh`
-  - sudo must be configured to install this, doas-sudo-shim isn't sufficient
-- Update zsh: `source .zshrc`
-- Vim's first run will need to install plugins: `vim -c "PlugInstall" -c "qa!"`
-  - Ignore the plugin error, that's what we're fixing right now
-  - You might need to escape the `!` at the end with `\!`
-- Install the ssh public key: `cat .ssh/id_rsa.pub >> .ssh/authorized_keys && rm .ssh/id_rsa.pub`
-- Repeat all of these steps as root in `/root` to get the same configuration when using `sudo`/`doas`
-- Done!
+```zsh
+# Configure the alias for the current shell
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# Prevent recursion problems
+echo ".cfg" >> .gitignore
+
+# Clone the repository
+git clone --bare https://github.com/garentyler/dotfiles $HOME/.cfg
+
+# Discard local changes
+# This will overwrite files, just make a backup if you're worried about that
+config reset --hard
+
+# Load the contents of the repository
+config checkout
+
+# Ignore untracked files
+config config --local status.showUntrackedFiles no
+
+# Install [Starship](https://starship.rs/)
+# sudo must be configured to install this, doas-sudo-shim isn't sufficient
+curl -sS https://starship.rs/install.sh | sh
+
+# Update the current shell
+# Must be running zsh
+source .zshrc
+
+# Vim's first run will need to install plugins
+# Ignore the plugin error, that's what we're fixing right now
+vim -c "PlugInstall" -c "qa\!"
+
+# Install the ssh public key
+cat .ssh/id_rsa.pub >> .ssh/authorized_keys && rm .ssh/id_rsa.pub
+
+# Repeat all of these steps as root in /root to get the same configuration when using sudo/doas
+```
 
 ## Installing packages
 
