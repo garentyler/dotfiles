@@ -146,8 +146,8 @@ nmap mk :m .-2<CR>
 nmap m<Up> :m .-2<CR>
 
 " Highlight config
-highlight Pmenu ctermbg=black ctermfg=white " Change the suggestion box colors
-highlight CocFloating ctermbg=black      " Floating box background
+highlight Pmenu ctermbg=none ctermfg=white " Change the suggestion box colors
+highlight CocFloating ctermbg=none       " Floating box background
 highlight CocHintFloat ctermfg=white     " Hint text color
 highlight CocInfoFloat ctermfg=white     " Info text color
 highlight CocWarningFloat ctermfg=yellow " Warning text color
@@ -165,6 +165,7 @@ highlight StatusLine ctermbg=none
 highlight SpecialKey ctermfg=59
 highlight NonText ctermfg=59
 highlight Comment ctermfg=102
+highlight Folded ctermbg=none
 
 " NERDTree config
 " Show hidden files by default

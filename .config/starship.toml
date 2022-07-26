@@ -1,27 +1,27 @@
-format = "$character$username$hostname$directory$git_branch$git_status"
+format = "$username$hostname$directory$git_branch$git_status"
 add_newline = false
 
 [character]
-success_symbol = "[➜](bold green)"
-error_symbol = "[➜](bold red)"
+success_symbol = "[+](#e45649)"
+error_symbol = "[-](#e45649)"
 
 [username]
-format = "[$user]($style)[@](bold red)"
+format = "[$user]($style)[@](#98c379)"
 show_always = true
-style_user = "bold red"
-style_root = "inverted bold red"
+style_user = "#98c379"
+style_root = "inverted #98c379"
 
 [hostname]
-format = "[$hostname](bold red) "
+format = "[$hostname](#98c379) "
 ssh_only = false
 
 [directory]
 truncation_length = 1
-format = "[$path](bold cyan) "
+format = "[$path](#56b6c2) "
 
 [git_branch]
-format = "[git:\\([$branch](bold red)\\)](bold blue) "
+format = "[$branch](#528bff)"
 
 [git_status]
-format = "[$modified](bold yellow)"
-modified = "✘ "
+format = "[$modified](#528bff) "
+modified = "*"
