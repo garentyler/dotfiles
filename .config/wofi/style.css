@@ -1,0 +1,22 @@
+* {
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+window {
+    background-color: rgba(8, 8, 8, 0.8);
+}
+
+#input {
+    padding: 10px 12px;
+    background-color: rgb(24, 24, 24);
+}
+
+#entry:selected {
+    background-color: #6d6b82;
+}
+
+#text {
+    margin-left: 1em;
+}
+

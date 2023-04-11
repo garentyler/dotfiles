@@ -1,0 +1,16 @@
+image=/home/gt/.config/wallpapers/current.png
+clock
+timestr=%I:%M:%S %p
+datestr=%a %F
+indicator
+indicator-radius=150
+indicator-thickness=4
+effect-blur=9x9
+grace=10
+fade-in=0.2
+inside-color=00000088
+separator-color=00000000
+ring-color=c0ffee
+key-hl-color=880033
+line-color=00000000
+

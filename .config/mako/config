@@ -1,0 +1,9 @@
+font="Source Code Pro 12"
+background-color=#6d6b82
+border-radius=8
+border-size=0
+padding=14,16
+margin=14,16
+default-timeout=5000
+max-icon-size=48
+

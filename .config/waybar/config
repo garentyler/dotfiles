@@ -1,0 +1,153 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "width": 1920,
+    "spacing": 0,
+    // Choose the order of the modules
+    "modules-left": ["hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["tray", "network", "cpu", "memory", "temperature", "battery", "pulseaudio", "clock", "idle_inhibitor"],
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "!",
+            "deactivated": "."
+        },
+        "tooltip-format-activated": "Screen lock disabled",
+        "tooltip-format-deactivated": "Screen lock enabled"
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        "interval": 1,
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%I:%M:%S %p}",
+        "format-alt": "{:%Y-%m-%d %I:%M:%S %p}"
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "CPU {usage}%",
+        "tooltip": false,
+        "on-click": "alacritty -e htop -s PERCENT_CPU"
+    },
+    "memory": {
+        "interval": 1,
+        "format": "MEM {used} GiB",
+        "tooltip-format": "used: {used} GiB
+available: {avail} GiB
+
+swap used: {swapUsed} GiB
+swap available: {swapAvail} GiB",
+        "on-click": "alacritty -e htop -s PERCENT_MEM"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+        "interval": 1,
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "TEMP {temperatureC}°C",
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "BAT {capacity}%",
+        "format-charging": "BAT+ {capacity}%",
+        "format-plugged": "BAT= {capacity}%",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "interval": 1,
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({ipaddr}/{cidr})",
+        "format-ethernet": "Wired ({ipaddr}/{cidr})",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected",
+        // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        //"tooltip-format": "{ifname} via {gwaddr}",
+        //"tooltip-format": "{ifname}: {bandwidthDownBytes} down, {bandwidthUpBytes} up",
+
+// TOOLTIP START
+        "tooltip-format": "down: {bandwidthDownBytes}
+up: {bandwidthUpBytes}
+
+interface: {ifname}
+gateway: {gwaddr}
+ip: {ipaddr}/{cidr}",
+// TOOLTIP END
+
+// WIFI TOOLTIP START
+        "tooltip-format-wifi": "down: {bandwidthDownBytes}
+up: {bandwidthUpBytes}
+
+interface: {ifname}
+gateway: {gwaddr}
+ip: {ipaddr}/{cidr}
+
+essid: {essid}
+signal strength: {signaldBm} dBm
+frequency: {frequency} GHz",
+// WIFI TOOLTIP END
+
+        "on-click": "alacritty -e htop -s PERCENT_MEM",
+        "on-right-click": "alacritty -e wait-wrapper speedtest"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "VOL {volume}% / {format_source}",
+        "format-muted": "VOL {volume}% (M) / {format_source}",
+        "format-bluetooth": "VOL {volume}% {icon} / {format_source}",
+        "format-bluetooth-muted": "VOL {icon} (M) / {format_source}",
+        "format-source": "{volume}%",
+        "format-source-muted": "{volume}% (M)",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-right-click": "alacritty -e wait-wrapper wpctl status"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
+}
+
