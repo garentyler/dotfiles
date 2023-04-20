@@ -22,6 +22,7 @@ alias touchbar="sudo killall TouchBarServer"
 alias fucking="doas"
 alias :q="exit"
 alias quit="exit"
+alias vim="nvim"
 
 # Typos
 alias celar="clear"

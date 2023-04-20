@@ -3,3 +3,6 @@
 [user]
 	email = garentyler@garen.dev
 	name = Garen Tyler
+    signingkey = A81D3172B96C09FCFD878697C632BE7F3470A10E
+[commit]
+    gpgsign = true

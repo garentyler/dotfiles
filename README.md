@@ -46,6 +46,44 @@ config config --local status.showUntrackedFiles no
 - Install Rust packages: `cargo install exa ripgrep`
 - Install the dotfiles
 
+### WSL (Debian)
+
+This section is based on [this article](https://www.thetestspecimen.com/posts/wsl2-yubikey/).
+
+- Install [Gpg4win](https://www.gpg4win.org)
+- Install wsl2-ssh-pageant:
+  ```sh
+  sudo apt install socat
+  mkdir ~/.ssh
+  wget https://github.com/BlackReloaded/wsl2-ssh-pageant/releases/download/v1.3.0/wsl2-ssh-pageant.exe -O ~/.ssh/wsl2-ssh-pageant.exe
+  chmod +x ~/.ssh/wsl2-ssh-pageant.exe
+  ```
+- Create `~/.config/fish/conf.d/40-wsl.fish` with the contents below:
+  ```fish
+  set -x SSH_AUTH_SOCK "$HOME/.ssh/agent.sock"
+  if ss -a | grep -q $SSH_AUTH_SOCK
+    # Do nothing
+  else
+    rm -f $SSH_AUTH_SOCK
+    setsid nohup socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:$HOME/.ssh/wsl2-ssh-pageant.exe &>/dev/null &
+  end
+
+  set -x GPG_AGENT_SOCK "$GNUPGHOME/S.gpg-agent"
+  if ss -a | grep -q $GPG_AGENT_SOCK
+    # Do nothing
+  else
+    rm -rf $GPG_AGENT_SOCK
+    setsid nohup socat UNIX-LISTEN:$GPG_AGENT_SOCK,fork EXEC:"$HOME/.ssh/wsl2-ssh-pageant.exe --gpg S.gpg-agent" &>/dev/null &
+  end
+
+  fish_add_path "/mnt/c/Program Files (x86)/GnuPG/bin/"
+  alias wsl="wsl.exe"
+  alias gpg="gpg.exe"
+  ```
+- Update the system-wide git configuration to use the correct GPG program:
+  `sudo git config --system gpg.program "/mnt/c/Program Files (x86)/GnuPG/bin/gpg.exe"`
+- Install the dotfiles
+
 ## Colors
 
 My terminal and theme colors are based on Atom's perfect One Dark theme.
