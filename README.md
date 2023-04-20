@@ -65,7 +65,7 @@ This section is based on [this article](https://www.thetestspecimen.com/posts/ws
     # Do nothing
   else
     rm -f $SSH_AUTH_SOCK
-    setsid nohup socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:$HOME/.ssh/wsl2-ssh-pageant.exe &>/dev/null &
+    setsid nohup socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:$HOME/.ssh/wsl2-ssh-pageant.exe &>/dev/null & disown
   end
 
   set -x GPG_AGENT_SOCK "$GNUPGHOME/S.gpg-agent"
@@ -73,7 +73,7 @@ This section is based on [this article](https://www.thetestspecimen.com/posts/ws
     # Do nothing
   else
     rm -rf $GPG_AGENT_SOCK
-    setsid nohup socat UNIX-LISTEN:$GPG_AGENT_SOCK,fork EXEC:"$HOME/.ssh/wsl2-ssh-pageant.exe --gpg S.gpg-agent" &>/dev/null &
+    setsid nohup socat UNIX-LISTEN:$GPG_AGENT_SOCK,fork EXEC:"$HOME/.ssh/wsl2-ssh-pageant.exe --gpg S.gpg-agent" &>/dev/null & disown
   end
 
   fish_add_path "/mnt/c/Program Files (x86)/GnuPG/bin/"

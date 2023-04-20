@@ -3,10 +3,9 @@ if status is-interactive
     thefuck --alias | source
     starship init fish | source
 
-    # Start hyprland if it's not already running.
-    # if not pgrep -f Hyprland > /dev/null
-    #     hyprland
-    # end
+    if test -z $TMUX
+        exec tmux
+    end
 end
 
 function fish_greeting
