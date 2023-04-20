@@ -3,9 +3,9 @@ if status is-interactive
     thefuck --alias | source
     starship init fish | source
 
-    if test -z $TMUX
-        exec tmux
-    end
+    # if test -z $TMUX
+    #     exec tmux
+    # end
 end
 
 function fish_greeting
