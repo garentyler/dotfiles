@@ -1,5 +1,8 @@
 #!/bin/fish
 
+set -x SHELL (which fish)
+set -x EDITOR (which nvim)
+
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x XDG_CACHE_HOME "$HOME/.cache"
 set -x XDG_DATA_HOME "$HOME/.local/share"
@@ -13,4 +16,7 @@ set -x GNUPGHOME "$XDG_DATA_HOME/gnupg"
 
 set -x DOCKER_CONFIG "$XDG_CONFIG_HOME/docker"
 set -x WGETRC "$XDG_CONFIG_HOME/wgetrc"
+
+set -x GPG_TTY (tty)
+set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 
