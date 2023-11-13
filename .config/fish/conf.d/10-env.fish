@@ -16,6 +16,7 @@ set -x GNUPGHOME "$XDG_DATA_HOME/gnupg"
 
 set -x DOCKER_CONFIG "$XDG_CONFIG_HOME/docker"
 set -x WGETRC "$XDG_CONFIG_HOME/wgetrc"
+set -x MAKEOPTS "--jobs $(nproc)"
 
 set -x GPG_TTY (tty)
 set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
