@@ -1,7 +1,7 @@
 #!/bin/fish
 
-set -x SHELL (which fish)
-set -x EDITOR (which nvim)
+set -x SHELL (command -s fish)
+set -x EDITOR (command -s nvim)
 
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x XDG_CACHE_HOME "$HOME/.cache"

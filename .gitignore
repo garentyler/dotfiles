@@ -1,3 +1,12 @@
-.cfg
-.config/nvim/plugin/packer_compiled.lua
-.config/fish/conf.d/40-*
+/.cfg
+/.cache
+/Desktop
+/Documents
+/Downloads
+/Music
+/Pictures
+/Projects
+/Public
+/Templates
+/Videos
+
